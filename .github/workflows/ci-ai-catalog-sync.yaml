@@ -59,9 +59,3 @@ jobs:
           labels: ai, automated
           delete-branch: true
 
-      - name: Trigger automerge
-        if: steps.changes.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.TWENTY_INFRA_TOKEN }}
-        run: |
-          gh api repos/twentyhq/twenty-infra/dispatches -f event_type=automated-pr-ready
